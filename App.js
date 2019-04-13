@@ -2,12 +2,17 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import Ball from "./Ball"
+import Draggable from './Draggable'
+import Screen from "./Screen"
+import Grant from './Grant'
+import Pan from "./Pan"
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
       
-        <Ball/>
+        <Grant/>
+        <Pan/>
       </View>
     );
   }
