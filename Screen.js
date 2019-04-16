@@ -1,89 +1,68 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text ,Animated,PanResponder} from "react-native";
-import Draggable from "./Draggable"
+import Svg,{
+  Circle,
+  Ellipse,
+  G,
+  Text,
+  TSpan,
+  TextPath,
+  Path,
+  Polygon,
+  Polyline,
+  Line,
+  Rect,
+  Use,
+  Image,
+  Symbol,
+  Defs,
+  LinearGradient,
+  RadialGradient,
+  Stop,
+  ClipPath,
+  Pattern,
+  Mask,
+} from 'react-native-svg';
 
-export default class Screen extends Component {
-    constructor(props){
-    super(props)
-    this.state = {
-      showDraggable: false,
-      dropAreaValues: null,
-      pan: new Animated.ValueXY(),
-      opacity: new Animated.Value(1)
-    };
-  }
-  componentWillMount()
-  {
-   
-    this.panResponder = PanResponder.create({
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 
-        onPanResponderRelease: (e, gesture) => {
-            if (this.isDropArea(gesture)) {
-              Animated.timing(this.state.opacity, {
-              toValue: 0,
-              duration: 1000
-            }).start(() =>
-              this.setState({
-                 showDraggable: true
-              })
-            );
-          } else {
-            Animated.spring(this.state.pan, {
-              toValue: { x: 0, y: 0 },
-              friction: 5
-            }).start();
-          }
-        },
-      isDropArea(gesture) {
-        return gesture.moveY < 200;
-      }
-    })}
-
-
-     
-     
-
-
-  render() {
-    return (
-      <View style={styles.mainContainer}>
-        <View style={styles.dropZone}>
-          <Text style={styles.text}>Drop them here!</Text>
-        </View>
-        <View style={styles.ballContainer} />
-        <View style={styles.row}>
-          <Draggable />
-          <Draggable />
-          <Draggable />
-          <Draggable />
-          <Draggable />
-        </View>
-      </View>
-    );
-  }
+export default class SvgExample extends React.Component {
+render() {
+  return (
+    <View
+      style={[
+        StyleSheet.absoluteFill,
+        { alignItems: 'center', justifyContent: 'center' },
+      ]}>
+      <Svg height="50%" width="50%" viewBox="0 0 100 100">
+        <Circle
+          cx="50"
+          cy="50"
+          r="45"
+          stroke="blue"
+          strokeWidth="2.5"
+          fill="green"
+        />
+        <Rect
+          x="15"
+          y="15"
+          width="70"
+          height="70"
+          stroke="red"
+          strokeWidth="2"
+          fill="yellow"
+        />
+      </Svg>
+      <Svg
+    height="100"
+    width="100"
+>
+    <Rect x="0" y="0" width="100" height="100" fill="black" />
+    <Circle cx="50" cy="50" r="30" fill="yellow" />
+    <Circle cx="40" cy="40" r="4" fill="black" />
+    <Circle cx="60" cy="40" r="4" fill="black" />
+    <Path d="M 40 60 A 10 10 0 0 0 60 60" stroke="black" />
+</Svg>
+    </View>
+  );
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1
-  },
-  ballContainer: {
-    height:200
-  },
-  row: {
-    flexDirection: "row"
-  },  
-  dropZone: {
-    height: 200,
-    backgroundColor: "#00334d"
-  },
-  text: {
-    marginTop: 25,
-    marginLeft: 5,
-    marginRight: 5,
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 25,
-    fontWeight: "bold"
-  }
-});
+}

@@ -24,7 +24,7 @@ export default class Draggable extends Component {
       onStartShouldSetPanResponder: (e, gesture) => true,
       onPanResponderRelease: (e, gesture) => {
         Animated.spring(this.state.pan, {
-          toValue: { x: 0, y: 0 },
+          toValue:15,
           friction: 5,
           useNativeDriver:true
         }).start();

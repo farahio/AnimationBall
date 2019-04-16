@@ -1,37 +1,35 @@
-import React, { Component } from 'react';
-import { View, StyleSheet,PanResponder,Animated} from 'react-native';
 
-class Ball extends Component {
-    constructor(props) {
-        super(props);
-        const position = new Animated.ValueXY();
-        const panResponder = PanResponder.create({
-           onStartShouldSetPanResponder: () => true,
-           onPanResponderMove: (event, gesture) => {
-              position.setValue({ x: gesture.dx, y: gesture.dy });
-           }
-        });
-        this.state = { panResponder, position };
-     }
-
-   render() {
-    let handles = this.state.panResponder.panHandlers;
-      return (
-         <Animated.View  style={[styles.ball, this.state.position.getLayout()]}
-         {...handles}
-          />
-      );
-   }
+import React, {Component} from 'react';
+import { View, ScrollView, Text, Animated, PanResponder } from 'react-native';
+export default class Ball extends Component {
+ 
+    state={
+        time:" "
+    }
+ 
+    componentDidMount(){
+        setInterval(()=>{
+                this.setState({time:new Date().toLocaleString().splite("") [1]});
+        },1000)
+    }
+    render() {
+        return (
+            <View>
+                <Text time={this.state.time}>Time</Text>
+            </View>
+            
+        )
+    }
 }
+ 
+ 
+const styles = {
+    cardContainer: {
+        minHeight: 1000,
+        flex: 1,
+        backgroundColor: '#f3f3f3'
+    },
 
-const styles = StyleSheet.create({
-   ball: {
-      height: 80,
-      width: 80,
-      borderColor: '#B31CBA',
-      borderRadius: 40,
-      borderWidth: 40
-   },
-});
-
-export default Ball;
+}
+ 
+ 

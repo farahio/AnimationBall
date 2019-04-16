@@ -10,9 +10,10 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-      
-        <Grant/>
-        <Pan/>
+      {/* <Grant/>
+        <Pan/> */}
+       
+        <Screen/>
       </View>
     );
   }
